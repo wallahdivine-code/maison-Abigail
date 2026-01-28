@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Maison Abigail</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Maison Abigail</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    /* =====================
+       RESET & BODY
+    ===================== */
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: 'Roboto', sans-serif; line-height:1.6; background-color:#fff8f0; color:#3b2e2e; scroll-behavior:smooth; }
+    a { text-decoration:none; }
+    
+    /* =====================
+       BUTTONS
+    ===================== */
+    .btn-order { display:inline-block; background-color:#d4af37; color:#fff; padding:12px 25px; border-radius:8px; font-weight:bold; transition:all 0.3s ease; cursor:pointer;}
+    .btn-order:hover { background-color:#c59b2f; transform:scale(1.05);}
+    
+    /* =====================
+       HERO
+    ===================== */
+    .hero { background:url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4") center/cover no-repeat; height:70vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; }
+    .hero::after { content:""; position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.4);}
+    .hero-text { position:relative; color:#fff; z-index:2; }
+    .hero-text h1 { font-family:'Playfair Display', serif; font-size:3rem; margin-bottom:10px;}
+    .hero-text p { font-size:1.2rem; margin-bottom:15px;}
+    
+    /* =====================
+       ABOUT
+    ===================== */
+    .about { padding:60px 20px; max-width:1000px; margin:auto; }
+    .about h2 { text-align:center; font-size:2rem; margin-bottom:30px; position:relative;}
+    .about h2::after { content:""; display:block; width:80px; height:3px; background-color:#d4af37; margin:10px auto 0; border-radius:3px;}
+    .about-content { display:flex; flex-wrap:wrap; gap:20px; align-items:center;}
+    .about-content img { flex:1 1 300px; max-width:400px; border-radius:12px; }
+    .about-content p { flex:2 1 400px; font-size:1.1rem; }
+    
+    /* =====================
+       FEATURED DISHES
+    ===================== */
+    .featured-dishes { background-color:#fff7eb; padding:60px 20px; }
+    .featured-dishes h2 { text-align:center; font-size:2rem; margin-bottom:30px; position:relative;}
+    .featured-dishes h2::after { content:""; display:block; width:80px; height:3px; background-color:#d4af37; margin:10px auto 0; border-radius:3px;}
+    .dishes-container { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:25px; }
+    .dish-card { background-color:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.1); transition:transform 0.3s, box-shadow 0.3s; opacity:0; transform:translateY(30px);}
+    .dish-card.show { opacity:1; transform:translateY(0);}
+    .dish-card:hover { transform:translateY(-5px); box-shadow:0 8px 25px rgba(0,0,0,0.15);}
+    .dish-card img { width:100%; height:200px; object-fit:cover; }
+    .dish-card h3 { text-align:center; padding:10px 0 5px 0;}
+    .dish-card p { padding:0 15px 5px 15px; font-size:0.95rem; text-align:center;}
+    .dish-card strong { display:block; text-align:center; font-size:1.05rem; margin:5px 0 10px 0; color:#d4af37;}
+    
+    /* =====================
+       CTA
+    ===================== */
+    .cta { background-color:#d4af37; color:#fff; text-align:center; padding:50px 20px; }
+    .cta h2 { font-size:2rem; margin-bottom:20px;}
+    
+    /* =====================
+       FOOTER
+    ===================== */
+    footer { background-color:#3b2e2e; color:#fff; text-align:center; padding:30px 20px; }
+    footer p { margin-bottom:10px; font-size:0.95rem;}
+    
+    /* =====================
+       HELP CENTER
+    ===================== */
+    .help-btn { position:fixed; bottom:30px; right:30px; background-color:#3b2e2e; color:#fff; border:none; padding:15px 20px; border-radius:50px; font-weight:bold; cursor:pointer; z-index:1000; box-shadow:0 4px 10px rgba(0,0,0,0.2);}
+    .help-btn:hover { background-color:#2a1f1f;}
+    
+    .help-modal { display:none; position:fixed; z-index:1001; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); justify-content:center; align-items:center;}
+    .help-content { background-color:#fff; padding:30px; width:90%; max-width:400px; border-radius:12px; text-align:center; position:relative;}
+    .help-content input, .help-content textarea, .help-content select { width:100%; padding:10px; margin:8px 0; border-radius:6px; border:1px solid #ccc; }
+    .help-content textarea { resize:none; height:100px; }
+    .help-content .close { position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer;}
+    
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media(max-width:768px) {
+      .about-content { flex-direction:column; }
+      .dishes-container { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-text">
+      <h1>Maison Abigail</h1>
+      <p>Fine Nigerian & Continental Cuisine</p>
+      <a href="#menu" class="btn-order">Order Now</a>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <h2>About Maison Abigail</h2>
+    <div class="about-content">
+      <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e" alt="Chef cooking">
+      <p>
+        Maison Abigail blends Nigerian heritage with modern fine dining. Every dish is prepared with passion, using the freshest ingredients and flavors that celebrate our culture.
+      </p>
+    </div>
+  </section>
+
+  <!-- FEATURED DISHES -->
+  <section class="featured-dishes" id="menu">
+    <h2>Our Menu</h2>
+    <div class="dishes-container">
+
+      <div class="dish-card">
+        <img src="https://i.postimg.cc/bvFkH3dM/91d0882a51a4651fa5b77edc2510cada.png" alt="Jollof Rice">
+        <h3>Nigerian Jollof Rice</h3>
+        <p>Authentic Nigerian Jollof Rice cooked with perfect spices.</p>
+        <strong>₦20,000</strong>
+        <a href="#" class="btn-order">Order Now</a>
+      </div>
+
+      <div class="dish-card">
+        <img src="https://i.postimg.cc/8PHFmt0x/77918810987ab61e0d60a9949484cdd2.webp" alt="Pounded Yam & Egusi">
+        <h3>Pounded Yam & Egusi</h3>
+        <p>Classic Nigerian delicacy served with rich egusi soup.</p>
+        <strong>₦25,000</strong>
+        <a href="#" class="btn-order">Order Now</a>
+      </div>
+
+      <div class="dish-card">
+        <img src="https://i.postimg.cc/zXcNNhLs/52b3130b14c3396207c519b7fc993ee4.webp" alt="Grilled Chicken">
+        <h3>Grilled Chicken</h3>
+        <p>Juicy grilled chicken marinated with local spices.</p>
+        <strong>₦10,500</strong>
+        <a href="#" class="btn-order">Order Now</a>
+      </div>
+
+      <div class="dish-card">
+        <img src="https://i.postimg.cc/QdT2ryZ6/8c45b28b5bdf3748d3bc5ba982b51983.webp " alt="Egusi Soup">
+        <h3>Egusi Soup & Fufu</h3>
+        <p>Delicious egusi soup served with soft fufu.</p>
+        <strong>₦15,800</strong>
+        <a href="#" class="btn-order">Order Now</a>
+      </div>
+
+      <div class="dish-card">
+        <img src="https://i.postimg.cc/hvN2yKjk/fb5713d574d37257e297329c1d79cd15.webp " alt="Spicy Beef Suya">
+        <h3>Spicy Beef Suya</h3>
+        <p>Flavored grilled beef skewers with local spices.</p>
+        <strong>₦9,500</strong>
+        <a href="#" class="btn-order">Order Now</a>
+      </div>
+
+      <div class="dish-card">
+        <img src="https://i.postimg.cc/BvjKmHry/Screenshot-20260127-140231-Google.jpg" alt="Moi Moi">
+        <h3>Nigerian Moi Moi</h3>
+        <p>Steamed bean pudding with spices and palm oil.</p>
+        <strong>₦5,000</strong>
+        <a href="#" class="btn-order">Order Now</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Ready to taste luxury?</h2>
+    <a href="#" class="btn-order">Order Now</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>📞 Contact us: +234 812 079 0165</p>
+    <p>📍 Location: Abuja, Nigeria</p>
+    <p>© 2026 Maison Abigail</p>
+  </footer>
+
+  <!-- HELP CENTER BUTTON -->
+  <button class="help-btn" onclick="openHelp()">Need Help?</button>
+
+  <!-- HELP CENTER MODAL -->
+  <div id="helpModal" class="help-modal">
+    <div class="help-content">
+      <span class="close" onclick="closeHelp()">&times;</span>
+      <h2>Customer Support</h2>
+      <p>Having trouble with your order? Choose an issue or write your own:</p>
+      
+      <select id="issueSelect">
+        <option value="">--Select an issue--</option>
+        <option value="Payment failed">Payment failed</option>
+        <option value="Order stuck">Order stuck / delayed</option>
+        <option value="Wrong dish delivered">Wrong dish delivered</option>
+        <option value="Other">Other</option>
+      </select>
+      <textarea id="customIssue" placeholder="Describe your issue"></textarea>
+      <button class="btn-order" onclick="submitHelp()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // ===========================
+    // ORDER BUTTON POPUP
+    // ===========================
+    const orderButtons = document.querySelectorAll(".btn-order");
+    orderButtons.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        alert("Thank you for choosing Maison Abigail! Your order will be processed shortly 🍽️");
+      });
+    });
+
+    // ===========================
+    // SCROLL FADE-IN FOR DISHES
+    // ===========================
+    const dishes = document.querySelectorAll(".dish-card");
+    window.addEventListener("scroll", () => {
+      const triggerBottom = window.innerHeight / 5 * 4;
+      dishes.forEach(dish => {
+        const dishTop = dish.getBoundingClientRect().top;
+        if(dishTop < triggerBottom){
+          dish.classList.add("show");
+        } else {
+          dish.classList.remove("show");
+        }
+      });
+    });
+
+    // ===========================
+    // HELP CENTER
+    // ===========================
+    function openHelp() {
+      document.getElementById("helpModal").style.display = "flex";
+    }
+    function closeHelp() {
+      document.getElementById("helpModal").style.display = "none";
+    }
+
+    function submitHelp() {
+      const select = document.getElementById("issueSelect");
+      const custom = document.getElementById("customIssue").value.trim();
+      let issue = select.value;
+      if(issue === "Other") issue = custom;
+
+      if(issue) {
+        alert("Thank you! We received your issue: '" + issue + "'. We’ll get back to you shortly. 📩");
+        closeHelp();
+        select.value = "";
+        custom.value = "";
+      } else {
+        alert("Please select or describe your issue before sending.");
+      }
+    }
+  </script>
+
+</body>
+</html>
+    <script  src="./script.js"></script>
+
+  </body>
+  
+</html>

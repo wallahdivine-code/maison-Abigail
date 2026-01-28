@@ -1,0 +1,78 @@
+/* =====================
+   RESET & BODY
+===================== */
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family: 'Roboto', sans-serif; line-height:1.6; background-color:#fff8f0; color:#3b2e2e; scroll-behavior:smooth; }
+a { text-decoration:none; }
+
+/* =====================
+   BUTTONS
+===================== */
+.btn-order { display:inline-block; background-color:#d4af37; color:#fff; padding:12px 25px; border-radius:8px; font-weight:bold; transition:all 0.3s ease; cursor:pointer;}
+.btn-order:hover { background-color:#c59b2f; transform:scale(1.05);}
+
+/* =====================
+   HERO
+===================== */
+.hero { background:url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4") center/cover no-repeat; height:70vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; }
+.hero::after { content:""; position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.4);}
+.hero-text { position:relative; color:#fff; z-index:2; }
+.hero-text h1 { font-family:'Playfair Display', serif; font-size:3rem; margin-bottom:10px;}
+.hero-text p { font-size:1.2rem; margin-bottom:15px; }
+
+/* =====================
+   ABOUT
+===================== */
+.about { padding:60px 20px; max-width:1000px; margin:auto; }
+.about h2 { text-align:center; font-size:2rem; margin-bottom:30px; position:relative;}
+.about h2::after { content:""; display:block; width:80px; height:3px; background-color:#d4af37; margin:10px auto 0; border-radius:3px;}
+.about-content { display:flex; flex-wrap:wrap; gap:20px; align-items:center;}
+.about-content img { flex:1 1 300px; max-width:400px; border-radius:12px; }
+.about-content p { flex:2 1 400px; font-size:1.1rem; }
+
+/* =====================
+   FEATURED DISHES
+===================== */
+.featured-dishes { background-color:#fff7eb; padding:60px 20px; }
+.featured-dishes h2 { text-align:center; font-size:2rem; margin-bottom:30px; position:relative;}
+.featured-dishes h2::after { content:""; display:block; width:80px; height:3px; background-color:#d4af37; margin:10px auto 0; border-radius:3px;}
+.dishes-container { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:25px; }
+.dish-card { background-color:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.1); transition:transform 0.3s, box-shadow 0.3s; opacity:0; transform:translateY(30px);}
+.dish-card.show { opacity:1; transform:translateY(0);}
+.dish-card:hover { transform:translateY(-5px); box-shadow:0 8px 25px rgba(0,0,0,0.15);}
+.dish-card img { width:100%; height:200px; object-fit:cover; }
+.dish-card h3 { text-align:center; padding:10px 0 5px 0;}
+.dish-card p { padding:0 15px 5px 15px; font-size:0.95rem; text-align:center;}
+.dish-card strong { display:block; text-align:center; font-size:1.05rem; margin:5px 0 10px 0; color:#d4af37;}
+
+/* =====================
+   CTA
+===================== */
+.cta { background-color:#d4af37; color:#fff; text-align:center; padding:50px 20px; }
+.cta h2 { font-size:2rem; margin-bottom:20px; }
+
+/* =====================
+   FOOTER
+===================== */
+footer { background-color:#3b2e2e; color:#fff; text-align:center; padding:30px 20px; }
+footer p { margin-bottom:10px; font-size:0.95rem; }
+
+/* =====================
+   HELP CENTER
+===================== */
+.help-btn { position:fixed; bottom:30px; right:30px; background-color:#3b2e2e; color:#fff; border:none; padding:15px 20px; border-radius:50px; font-weight:bold; cursor:pointer; z-index:1000; box-shadow:0 4px 10px rgba(0,0,0,0.2);}
+.help-btn:hover { background-color:#2a1f1f;}
+
+.help-modal { display:none; position:fixed; z-index:1001; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); justify-content:center; align-items:center;}
+.help-content { background-color:#fff; padding:30px; width:90%; max-width:400px; border-radius:12px; text-align:center; position:relative;}
+.help-content input, .help-content textarea, .help-content select { width:100%; padding:10px; margin:8px 0; border-radius:6px; border:1px solid #ccc; }
+.help-content textarea { resize:none; height:100px; }
+.help-content .close { position:absolute; top:10px; right:15px; font-size:24px; cursor:pointer; }
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media(max-width:768px) {
+  .about-content { flex-direction:column; }
+  .dishes-container { grid-template-columns:1fr; }
+}
